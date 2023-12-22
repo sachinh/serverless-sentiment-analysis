@@ -1,8 +1,14 @@
-# Serverless Pattern: EventBridge to StepFunctions to SNS
+# Analyzing sentiment of audio recordings and trigger escalations
 
-This pattern provides an automated, scalable, and cost-effective solution for processing audio recordings, transcribing spoken words into text, and analyzing the sentiment of the transcription. This solution leverages AWS to handle audio files uploaded to an S3 bucket, initiating a state function workflow that transcribes and analyzes the audio and send out notifications via SNS. 
+The purpose of this repo is to provide an automated, scalable, and cost-effective solution for processing audio recordings, transcribing spoken words into text, and analyzing the sentiment of the transcription. This pattern is particularly suited for organizations looking to automate customer service feedback analysis, call center operations, or any scenario where insights from audio recordings are critical, without the efforts of maintaining infrastructures. This solution includes:
 
-Important: this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example.
+**Audio Transcription:** Audio files recorded and uploaded to an S3 bucket trigger an AWS Step Functions state machine. The state machine coordinates with AWS Transcribe to convert the audio into a written transcript, making the content easily searchable and analyzable.
+
+**Sentiment Analysis:** Once transcribed, AWS Comprehend is used to analyze the text for sentiment, determining if the overall sentiment is positive, negative, neutral, or mixed. This is essential for understanding customer feedback or the emotional tone in recorded interactions.
+
+**Notification and Escalation:** The pattern includes mechanisms to notify relevant recipients of the sentiment analysis results. If the sentiment is negative, a notification can be sent via Amazon Simple Notification Service (SNS), and an email can be dispatched using AWS Simple Email Service (SES), allowing for immediate action or follow-up.
+
+*Important:* this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example.
 
 ## Requirements
 
